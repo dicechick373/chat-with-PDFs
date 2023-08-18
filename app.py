@@ -1,14 +1,10 @@
 import os
 import streamlit as st
 
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
-
 # import modules
 from utils import pyPDF
 from utils import vector_FAISS
-
+from utils import chain
 
 
 # proxy設定
@@ -16,19 +12,6 @@ os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
 os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
 
-def get_conversation_chain(vectorstore):
-    
-    llm = ChatOpenAI(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"],
-                     temperature=0.25)
-
-    memory = ConversationBufferMemory(
-        memory_key='chat_history', return_messages=True)
-    conversation_chain = ConversationalRetrievalChain.from_llm(
-        llm=llm,
-        retriever=vectorstore.as_retriever(),
-        memory=memory
-    )
-    return conversation_chain
 
 def handle_user_input(user_question):
     response = st.session_state.conversation({'question': user_question})
@@ -75,7 +58,7 @@ def main():
                 vectorstore= vector_FAISS.get_vectorstore(text_chunks)
 
                 # create conversation chain
-                st.session_state.conversation = get_conversation_chain(vectorstore)
+                st.session_state.conversation = chain.get_conversation_chain(vectorstore)
 
 if __name__ == "__main__":
     main()
