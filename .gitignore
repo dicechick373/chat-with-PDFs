@@ -3,3 +3,5 @@ pdf_chat_venv/
 
 # passwords and API keys
 .streamlit/secrets.toml
+
+data/
