@@ -12,6 +12,9 @@ os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
 os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
 
+import nltk
+nltk.download('all')
+
 
 def handle_user_input(user_question):
     response = st.session_state.conversation({'question': user_question})
