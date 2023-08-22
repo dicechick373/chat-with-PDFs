@@ -38,28 +38,38 @@ def main():
     if user_question:
         handle_user_input(user_question)
 
+
+    # ベクトルストアを読み込み
+    vectorstore= vector_FAISS.get_vectorstore_local()
+
+    # 回答を生成
+    st.session_state.conversation = chain.get_conversation_chain(vectorstore)
+
+
+
+
     """
     Sidebar
     """
-    with st.sidebar:
-        st.subheader("Your documents")
-        pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click `Process`", accept_multiple_files=True)
-        if st.button("Process"):
-            with st.spinner("Processing files ..."):
-                # get raw pdf text
-                raw_text = pyPDF.get_pdf_text(pdf_docs)
+    # with st.sidebar:
+    #     st.subheader("Your documents")
+    #     pdf_docs = st.file_uploader(
+    #         "Upload your PDFs here and click `Process`", accept_multiple_files=True)
+    #     if st.button("Process"):
+    #         with st.spinner("Processing files ..."):
+    #             # get raw pdf text
+    #             raw_text = pyPDF.get_pdf_text(pdf_docs)
 
-                # segment raw pdf text into chunks
-                text_chunks = pyPDF.get_text_chunks(raw_text)
+    #             # segment raw pdf text into chunks
+    #             text_chunks = pyPDF.get_text_chunks(raw_text)
 
-                # load text chunks into a vector store
-                vectorstore= vector_FAISS.get_vectorstore(text_chunks)
+    #             # load text chunks into a vector store
+    #             vectorstore= vector_FAISS.get_vectorstore(text_chunks)
 
-                # vectorstore= vector_FAISS.get_vectorstore_local()
+    #             # vectorstore= vector_FAISS.get_vectorstore_local()
 
-                # create conversation chain
-                st.session_state.conversation = chain.get_conversation_chain(vectorstore)
+    #             # create conversation chain
+    #             st.session_state.conversation = chain.get_conversation_chain(vectorstore)
 
 if __name__ == "__main__":
     main()

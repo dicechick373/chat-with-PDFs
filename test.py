@@ -14,7 +14,7 @@ os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 def main():
 
     # PDFを指定
-    pdf_path = "data/pdf/土木技術管理規程集_道路Ⅱ編_テスト1.pdf"
+    pdf_path = "data/pdf/土木技術管理規程集_道路Ⅱ編.pdf"
 
     # Documentに変換
     data = PDF_PyMuPDFLoader(pdf_path)
@@ -31,7 +31,7 @@ def main():
 
     
 
-    print(chunks)
+    # print(chunks)
 
  
 
