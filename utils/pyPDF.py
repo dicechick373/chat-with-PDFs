@@ -1,6 +1,5 @@
 # import streamlit as st
 from PyPDF2 import PdfReader
-
 from langchain.text_splitter import CharacterTextSplitter
 
 def get_pdf_text(pdf_docs):
@@ -32,3 +31,16 @@ def get_text_chunks(text):
     )
     chunks = text_splitter.split_text(text)
     return chunks
+
+def get_document_chunks(doc):
+    text_splitter = CharacterTextSplitter(
+        separator="\n",
+        chunk_size = 800,
+        chunk_overlap=200,
+        length_function = len
+    )
+
+    chunks = text_splitter.split_documents(doc)
+    return chunks
+
+

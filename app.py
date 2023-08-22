@@ -12,10 +12,6 @@ os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
 os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
 
-import nltk
-nltk.download('all')
-
-
 def handle_user_input(user_question):
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
@@ -59,6 +55,8 @@ def main():
 
                 # load text chunks into a vector store
                 vectorstore= vector_FAISS.get_vectorstore(text_chunks)
+
+                # vectorstore= vector_FAISS.get_vectorstore_local()
 
                 # create conversation chain
                 st.session_state.conversation = chain.get_conversation_chain(vectorstore)

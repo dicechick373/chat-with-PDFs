@@ -1,11 +1,12 @@
-
-
-
-
-from langchain.document_loaders import PyMuPDFLoader
-loader = PyMuPDFLoader("data/pdf/土木技術管理規程集_道路Ⅱ編_テスト1.pdf")
+'''
+PDFをテキスト変換する関数
+  dataはList[Document]
+   page_content=''
+   metadata={'source':""}
+'''
+from langchain.document_loaders import PDFMinerLoader
+loader = PDFMinerLoader("data/pdf/土木技術管理規程集_道路Ⅱ編_テスト1.pdf")
 data= loader.load_and_split()
-
 
 print(data)
 

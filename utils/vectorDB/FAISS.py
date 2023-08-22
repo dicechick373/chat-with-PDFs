@@ -1,5 +1,7 @@
 
 
+# 参考サイト
+# https://api.python.langchain.com/en/latest/document_loaders/langchain.document_loaders.pdf.UnstructuredPDFLoader.html
 
 '''
 PDFをテキスト変換する関数
@@ -7,11 +9,9 @@ PDFをテキスト変換する関数
    page_content=''
    metadata={'source':""}
 '''
-from langchain.document_loaders import PDFMinerLoader
-loader = PDFMinerLoader("data/pdf/土木技術管理規程集_道路Ⅱ編_テスト1.pdf")
+from langchain.document_loaders import UnstructuredPDFLoader
+loader = UnstructuredPDFLoader("data/pdf/土木技術管理規程集_道路Ⅱ編_テスト1.pdf")
 data= loader.load_and_split()
-
-# print(data)
 
 
 '''

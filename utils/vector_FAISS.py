@@ -1,6 +1,5 @@
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
-
 import streamlit as st
 
 
@@ -11,4 +10,14 @@ def get_vectorstore(text_chunks):
 
     # we'll use FAISS as our vector store.
     vector_store = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    return vector_store
+
+
+def get_vectorstore_local():
+    
+    # Get embedding model
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"])
+    vector_store = FAISS.load_local("faiss_index", embeddings)
+
+
     return vector_store
