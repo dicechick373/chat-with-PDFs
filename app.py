@@ -14,6 +14,8 @@ os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
 def handle_user_input(user_question):
     response = st.session_state.conversation({'question': user_question})
+    print('-----------------------------')
+    print(response)
     st.session_state.chat_history = response['chat_history']
 
     for i, message in enumerate(st.session_state.chat_history):

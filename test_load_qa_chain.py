@@ -34,6 +34,11 @@ def main():
     chain = load_qa_chain(ChatOpenAI(
         openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"],
         temperature=0), chain_type="stuff")
+    
+    print(chain)
+
+
+
 
 
     print(chain({"input_documents": docs_and_scores, "question": query}, return_only_outputs=True))

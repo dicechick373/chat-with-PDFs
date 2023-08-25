@@ -21,6 +21,8 @@ def get_conversation_chain(vectorstore):
         retriever=vectorstore.as_retriever(),
         memory=memory
     )
+
+    # print(conversation_chain)
     
     return conversation_chain
 

@@ -21,3 +21,5 @@ def get_vectorstore_local():
 
 
     return vector_store
+
+
