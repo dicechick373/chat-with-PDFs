@@ -3,10 +3,10 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-from langchain import PromptTemplate
+# from langchain import PromptTemplate
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.chains.conversational_retrieval.prompts import CONDENSE_QUESTION_PROMPT
-from langchain.chains import LLMChain
+# from langchain.chains import LLMChain
 
 def get_conversation_chain(vectorstore):
     
@@ -26,9 +26,11 @@ def get_conversation_chain(vectorstore):
     
     return conversation_chain
 
-class AnswerConversationBufferMemory(ConversationBufferMemory):
-    def save_context(self, inputs, outputs) :
-        return super(AnswerConversationBufferMemory, self).save_context(inputs,{'response': outputs['answer']})
+# class AnswerConversationBufferMemory(ConversationBufferMemory):
+#     def save_context(self, inputs, outputs) :
+#         return super(AnswerConversationBufferMemory, self).save_context(inputs,{'response': outputs['answer']})
+
+
 
 
 # def get_conversation_with_sources_chain(vectorstore):
