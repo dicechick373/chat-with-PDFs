@@ -21,28 +21,35 @@ def main():
         st.write("回答:\n", response['answer'])
         st.write("出典:\n", response['source'])
 
-    # """
+
+
     # Sidebar
-    # """
-    # with st.sidebar:
-    #     st.subheader("Your documents")
-    #     pdf_docs = st.file_uploader(
-    #         "Upload your PDFs here and click `Process`", accept_multiple_files=True)
-    #     if st.button("Process"):
-    #         with st.spinner("Processing files ..."):
-    #             # get raw pdf text
-    #             raw_text = pyPDF.get_pdf_text(pdf_docs)
+    with st.sidebar:
+        st.subheader("土木技術管理規定集")
+        agree = st.checkbox('道路Ⅰ編')
+        # pdf_docs = st.file_uploader(
+        #     "Upload your PDFs here and click `Process`", accept_multiple_files=True)
+        
+        # with st.expander("土木技術管理規定集"):
+        #     agree = st.checkbox('I agree')
+        
+       
 
-    #             # segment raw pdf text into chunks
-    #             text_chunks = pyPDF.get_text_chunks(raw_text)
+        # if st.button("Process"):
+        #     with st.spinner("Processing files ..."):
+        #         # get raw pdf text
+        #         # raw_text = pyPDF.get_pdf_text(pdf_docs)
 
-    #             # load text chunks into a vector store
-    #             vectorstore= vector_FAISS.get_vectorstore(text_chunks)
+        #         # segment raw pdf text into chunks
+        #         # text_chunks = pyPDF.get_text_chunks(raw_text)
 
-    #             # vectorstore= vector_FAISS.get_vectorstore_local()
+        #         # load text chunks into a vector store
+        #         # vectorstore= vector_FAISS.get_vectorstore(text_chunks)
 
-    #             # create conversation chain
-    #             st.session_state.conversation = chain.get_conversation_chain(vectorstore)
+        #         # vectorstore= vector_FAISS.get_vectorstore_local()
+
+        #         # create conversation chain
+        #         st.session_state.conversation = chain.get_conversation_chain(vectorstore)
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 
-from app.pdfLoader.PyMuPDFLoader import PDF_PyMuPDFLoader
-from app.pyPDF import get_document_chunks
+# from app.pdfLoader.PyMuPDFLoader import PDF_PyMuPDFLoader
+# from app.pyPDF import get_document_chunks
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 import streamlit as st

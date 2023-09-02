@@ -6,4 +6,6 @@ pdf_chat_venv/
 
 __pychache__/
 
-data/
+# data/
+
+*.pdf
