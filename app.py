@@ -2,9 +2,6 @@ import os
 import streamlit as st
 
 # import modules
-from utils import pyPDF
-from utils import vector_FAISS
-from utils import chain
 from utils import chains
 
 
