@@ -1,28 +1,23 @@
-import os
-import streamlit as st
-
 # import modules
-from utils import chains
+import streamlit as st
+from app import chain
 
-
-# proxy設定
-os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
-os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
-
+# Set up proxy configuration
+from app import proxy
+proxy.configure_proxy()
 
 def main():
     st.set_page_config(page_title="Chat with multiple PDFs",
                        page_icon="🤓")
     
  
-    
     st.header("Chat with multiple PDFs 📚")
 
     # 質問の入力欄を作成
     question = st.text_input("質問を入力してください")
     
     if st.button("送信"):
-        response = chains.answer_with_source(question)
+        response = chain.answer_with_source(question)
         st.write("回答:\n", response['answer'])
         st.write("出典:\n", response['source'])
 

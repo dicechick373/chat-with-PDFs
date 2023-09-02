@@ -4,4 +4,6 @@ pdf_chat_venv/
 # passwords and API keys
 .streamlit/secrets.toml
 
+__pychache__/
+
 data/

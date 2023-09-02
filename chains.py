@@ -1,22 +1,26 @@
 
-import os
-import streamlit as st
+from app.pdfLoader.PyMuPDFLoader import PDF_PyMuPDFLoader
+from app.pyPDF import get_document_chunks
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
+import streamlit as st
+import os
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chat_models import ChatOpenAI
 
 
-# Set up proxy configuration
+
+# proxy設定
 os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
 os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
-# Initialize embeddings and vector store outside of the function to avoid repetitive API calls
-embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"])
-vector_store = FAISS.load_local("faiss_index", embeddings)
 
-def answer_with_source(query):
+def answer_with_metadata(query):
 
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"])
+    vector_store = FAISS.load_local("faiss_index", embeddings)
+
+    query = "横断勾配は？"
     embedding_vector = embeddings.embed_query(query)
     docs_and_scores = vector_store.similarity_search_by_vector(embedding_vector)
 
@@ -28,16 +32,12 @@ def answer_with_source(query):
     
     responses = chain.run(input_documents=docs_and_scores, question=query)
 
-    source_list = [f"{doc.metadata['source']}:P{doc.metadata['page']}" for doc in docs_and_scores]
-    source_str = ', '.join(source_list)
-
-
-    return {
-        'answer':responses,
-        'source':source_str
-    }
+    print(responses)
     
+    # for response in responses:
+    #     print(response["answer"])
+    #     print(response["metadata"])
 
 
 if __name__ == "__main__":
-    answer_with_source()
+    answer_with_metadata()
