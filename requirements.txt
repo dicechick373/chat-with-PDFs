@@ -6,3 +6,6 @@ faiss-cpu
 tiktoken
 unstructured
 pdf2image
+pdfminer.six
+tabula-py
+pymupdf
