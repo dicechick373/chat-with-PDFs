@@ -1,0 +1,67 @@
+{
+    "config_file": "config.yml",
+    "dump": false,
+    "input_dirs": [
+        "/tmp/20230909130107/Ⅰ-01_土木計画学とは何か"
+    ],
+    "input_root": "/tmp/20230909130107/Ⅰ-01_土木計画学とは何か",
+    "input_structure": "s",
+    "layout_extraction": {
+        "checkpoint_path": "src/ndl_layout/models/epoch_140_all_eql_bt.pth",
+        "config_path": "src/ndl_layout/models/ndl_layout_config.py",
+        "device": "cuda:0",
+        "score_thr": 0.3
+    },
+    "line_ocr": {
+        "FeatureExtraction": "ResNet",
+        "PAD": true,
+        "Prediction": "CTC",
+        "SequenceModeling": "None",
+        "Transformation": "None",
+        "accept_empty": true,
+        "batch_max_length": 100,
+        "batch_size": 100,
+        "char_list": "src/text_recognition/models/mojilist_NDL.txt",
+        "character": "None",
+        "imgW": 1200,
+        "saved_model": "src/text_recognition/models/ndlenfixed64-mj0-synth1.pth",
+        "workers": 1,
+        "xml": "None",
+        "yield_block_page_num": true,
+        "yield_block_pillar": true,
+        "yield_block_rubi": false
+    },
+    "output_root": "/content/drive/MyDrive/github_repositories/chat-with-PDFs/data/土木計画学ハンドブック/MardDown_Nougat@p0..3",
+    "page_deskew": {
+        "acc_deg": 0.1,
+        "gray": 1.0,
+        "method": 1,
+        "quality": 100,
+        "r_angle": 0,
+        "roi_h": 1.0,
+        "roi_w": 1.0,
+        "short": null,
+        "skew_max": 4.0
+    },
+    "page_separation": {
+        "allow_invalid_num_output": true,
+        "ext": ".jpg",
+        "input": "inference_input",
+        "left": "_01",
+        "log": "trim_pos.tsv",
+        "out": "NO_DUMP",
+        "quality": 100,
+        "right": "_02",
+        "short": null,
+        "silence_tf_log": true,
+        "single": "_00",
+        "weight_path": "src/separate_pages_ssd/ssd_tools/weights.hdf5"
+    },
+    "partial_infer": false,
+    "proc_range": {
+        "end": 3,
+        "start": 0
+    },
+    "save_image": true,
+    "save_xml": true
+}
