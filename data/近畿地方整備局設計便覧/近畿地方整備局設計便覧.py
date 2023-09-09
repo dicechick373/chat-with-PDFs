@@ -17,7 +17,7 @@ from utils import PDFMiner
 os.environ['http_proxy'] = st.secrets["proxy"]["URL"]
 os.environ['https_proxy'] = st.secrets["proxy"]["URL"]
 
-llm = OpenAIChat(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"],temperature=0.0)
+llm = OpenAIChat(openai_api_key=st.secrets["api_keys"]["OPEN_API_KEY"],temperature=0.0,model="gpt-3.5-turbo")
 
 def format_text(page_content):
     prompt = f'''
@@ -107,7 +107,7 @@ def main():
     data= loader.load_and_split()
 
     # test = data[16]
-    print(format_dict(data[16]))
+    print(format_dict(data[18]))
    
     # for i, d in enumerate(data):
 
